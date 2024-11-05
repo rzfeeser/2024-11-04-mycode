@@ -1,0 +1,15 @@
+- name: make API call to astros
+  hosts: localhost
+  connection: ansible.builtin.local # fqcn to connection plugin
+  gather_facts: false
+
+  tasks:
+    - name: make API call with uri module
+      ansible.builtin.uri:
+        method: GET
+        url: http://api.open-notify.org/astros.json
+      register: results
+
+    - name: display the JSON from the results
+      debug:
+        var: results.json
