@@ -1,0 +1,24 @@
+- name: example playbook connecting to Palo Alto
+  connection: ansible.builtin.local  # if you install an SDK you will almost always use this connection method 
+  hosts: mypafirewalls
+  gather_facts: false # if ansible does not natively support the device, than gather_facts will not be successful
+
+  vars:
+    ourfws:
+      - provider:
+          api_key: abc123
+          ip_address: 192.168.11.70
+
+
+  tasks:
+
+  # this panos_facts is the palo alto equiv of gather_facts
+  - name: Get facts
+    paloaltonetworks.panos.panos_facts:
+      provider: '{{ provider }}'  # see ansible-doc for description
+      gather_subset: ['config']   # we just want to gather config-- see ansible-doc for more options
+    register: results
+
+  - name: display facts (config)
+    ansible.builtin.debug:
+      var: results

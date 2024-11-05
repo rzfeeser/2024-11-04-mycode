@@ -1,0 +1,3 @@
+ansible_become_password: qwerty123
+ansible_user: myuser
+ansible_password: qwerty  # turn this off if using SSH keys

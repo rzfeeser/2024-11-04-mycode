@@ -1,0 +1,12 @@
+all:
+  children:
+    mypafirewalls:
+      hosts:
+        fw01:
+          provider:
+              ip_address: 192.168.11.70
+              api_key: abc123
+        fw02:
+          provider:
+              ip_address: 192.168.11.71
+              api_key: xyz987

@@ -1,0 +1,20 @@
+- name: nxos example
+  # https://docs.ansible.com/ansible/latest/network/user_guide/platform_index.html#settings-by-platform
+  connection: ansible.builtin.network_cli
+  gather_facts: false
+  hosts: cisconxos
+
+  vars:
+    ansible_become: true
+    ansible_become_method: enable
+    # ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q bastion01"'   # poss. req in some environ. may need customized
+
+  tasks:
+    - name: grab some facts about nxos
+      cisco.nxos.nxos_facts:
+      register: nxos_facts
+
+
+    - name: display the facts
+      ansible.builtin.debug:
+        var: nxos_facts

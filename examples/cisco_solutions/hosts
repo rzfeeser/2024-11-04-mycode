@@ -1,0 +1,14 @@
+all:
+  children:
+    cisconxos:
+       hosts:
+         platform01:
+            ansible_host: 192.168.70.33  # ip of platform 01
+         platform02:
+            ansible_host: 192.168.70.34  # ip of platform 02
+       vars:                             # all platforms in the cisconxos group have these values
+         ansible_network_os: cisco.nxos.nxos
+         ## moved to groupvars/cisconxos
+         # ansible_become_password: qwerty123
+         # ansible_user: myuser
+         # ansible_password: qwerty  # turn this off if using SSH keys          
